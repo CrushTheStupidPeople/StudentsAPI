@@ -2,4 +2,8 @@
 Gemfile.lock
 *.gem
 .bundle
+.idea/*
 .idea
+out
+build
+.gradle

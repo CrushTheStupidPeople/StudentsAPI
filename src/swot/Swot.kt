@@ -1,5 +1,8 @@
 package swot
 
+import java.io.File
+import java.io.FileInputStream
+
 fun isAcademic(email: String): Boolean {
     val parts = domainParts(email)
     return !isStoplisted(parts) && (isUnderTLD(parts) || findSchoolNames(parts).isNotEmpty())
@@ -22,7 +25,10 @@ private object Resources {
     val stoplist = readList("/stoplist.txt") ?: error("Cannot find /stoplist.txt")
 
     fun readList(resource: String) : Set<String>? {
-        return javaClass.getResourceAsStream(resource)?.reader()?.buffered()?.lineSequence()?.toHashSet()
+        val file = File("lib/domains" + resource)
+        if (!file.exists())
+            return null
+        return file?.inputStream()?.reader()?.buffered()?.lineSequence()?.toHashSet()
     }
 }
 
