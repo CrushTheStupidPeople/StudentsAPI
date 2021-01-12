@@ -25,6 +25,7 @@ private object Resources {
     val stoplist = readList("/stoplist.txt") ?: error("Cannot find /stoplist.txt")
 
     fun readList(resource: String) : Set<String>? {
+        // CRISP - Since we added spring, we changed the package system. The stuff with classpath didn't resolve any more.
         val file = File("lib/domains" + resource)
         if (!file.exists())
             return null

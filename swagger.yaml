@@ -1,0 +1,52 @@
+swagger: "2.0"
+info:
+  title: Students API
+  description: Distributes swot API over http.
+  version: 1.0.0
+host: localhost:100
+basePath: /api/students
+schemes:
+  - http
+paths:
+  /is-academic:
+    get:
+      summary: Is academic?
+      description: Returns, if a given email is academic
+      produces:
+        - application/json
+      parameters:
+        - name: email
+          in: query
+          type: string
+          description: The query email
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              input:
+                type: string
+                description: The input email
+              is-academic:
+                type: boolean
+                description: The query result
+  /school-names:
+    get:
+      summary: School names
+      description: Returns a list of school names, that fit an email
+      produces:
+        - application/json
+      parameters:
+        - name: email
+          in: query
+          type: string
+          description: The query email
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              - type: string
+                description: A school name
